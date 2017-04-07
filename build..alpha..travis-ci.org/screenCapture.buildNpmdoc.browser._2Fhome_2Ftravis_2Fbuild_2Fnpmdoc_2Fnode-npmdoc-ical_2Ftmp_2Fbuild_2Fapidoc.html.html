@@ -1,0 +1,1072 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/peterbraden/ical.js">ical (v0.5.0)</a>
+</h1>
+<h4>A tolerant, minimal icalendar parser</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.ical">module ical</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.fromURL">
+            function <span class="apidocSignatureSpan">ical.</span>fromURL
+            <span class="apidocSignatureSpan">(url, opts, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.handleObject">
+            function <span class="apidocSignatureSpan">ical.</span>handleObject
+            <span class="apidocSignatureSpan">(name, val, params, ctx, stack, line)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.parseFile">
+            function <span class="apidocSignatureSpan">ical.</span>parseFile
+            <span class="apidocSignatureSpan">(filename)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.parseICS">
+            function <span class="apidocSignatureSpan">ical.</span>parseICS
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">ical.</span>node_ical</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">ical.</span>objectHandlers</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.ical.node_ical">module ical.node_ical</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.node_ical.fromURL">
+            function <span class="apidocSignatureSpan">ical.node_ical.</span>fromURL
+            <span class="apidocSignatureSpan">(url, opts, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.node_ical.parseFile">
+            function <span class="apidocSignatureSpan">ical.node_ical.</span>parseFile
+            <span class="apidocSignatureSpan">(filename)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.ical.objectHandlers">module ical.objectHandlers</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.BEGIN">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>BEGIN
+            <span class="apidocSignatureSpan">(component, params, curr, stack)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.CATEGORIES">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>CATEGORIES
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.COMPLETED">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>COMPLETED
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.DESCRIPTION">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>DESCRIPTION
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.DTEND">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>DTEND
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.DTSTART">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>DTSTART
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.END">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>END
+            <span class="apidocSignatureSpan">(val, params, curr, stack)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.FREEBUSY">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>FREEBUSY
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.GEO">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>GEO
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.LOCATION">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>LOCATION
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.PERCENT-COMPLETE">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>PERCENT-COMPLETE
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.RRULE">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>RRULE
+            <span class="apidocSignatureSpan">(val, params, curr, stack, line)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.SUMMARY">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>SUMMARY
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.TRANSP">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>TRANSP
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.UID">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>UID
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.objectHandlers.URL">
+            function <span class="apidocSignatureSpan">ical.objectHandlers.</span>URL
+            <span class="apidocSignatureSpan">(val, params, curr)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.ical" id="apidoc.module.ical">module ical</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.ical.fromURL" id="apidoc.element.ical.fromURL">
+        function <span class="apidocSignatureSpan">ical.</span>fromURL
+        <span class="apidocSignatureSpan">(url, opts, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">fromURL = function (url, opts, cb){
+  if (!cb)
+    return;
+  request(url, opts, function(err, r, data){
+    if (err)
+      return cb(err, null);
+    cb(undefined, ical.parseICS(data));
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Parses a string with an ICS File
+
+    var data = ical.parseFile(filename)
+
+Reads in the specified iCal file, parses it and returns the parsed data
+
+    ical.<span class="apidocCodeKeywordSpan">fromURL</span>(url, options, function(err, data) {} )
+
+Use the request library to fetch the specified URL (```opts``` gets passed on to the ```request()``` call), and call the function
+ with the result (either an error or the data).
+
+
+
+## Example 1 - Print list of upcoming node conferences (see example.js)
+```javascript
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.handleObject" id="apidoc.element.ical.handleObject">
+        function <span class="apidocSignatureSpan">ical.</span>handleObject
+        <span class="apidocSignatureSpan">(name, val, params, ctx, stack, line)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleObject = function (name, val, params, ctx, stack, line){
+  var self = this
+
+  if(self.objectHandlers[name])
+    return self.objectHandlers[name](val, params, ctx, stack, line)
+
+  //handling custom properties
+  if(name.match(/X\-[\w\-]+/) &amp;&amp; stack.length &gt; 0) {
+      //trimming the leading and perform storeParam
+      name = name.substring(2);
+      return (storeParam(name))(val, params, ctx, stack, line);
+  }
+
+  return storeParam(name.toLowerCase())(val, params, ctx);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.parseFile" id="apidoc.element.ical.parseFile">
+        function <span class="apidocSignatureSpan">ical.</span>parseFile
+        <span class="apidocSignatureSpan">(filename)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseFile = function (filename){
+  return ical.parseICS(fs.readFileSync(filename, 'utf8'))
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## API ##
+
+    ical.parseICS(str)
+
+Parses a string with an ICS File
+
+    var data = ical.<span class="apidocCodeKeywordSpan">parseFile</span>(filename)
+
+Reads in the specified iCal file, parses it and returns the parsed data
+
+    ical.fromURL(url, options, function(err, data) {} )
+
+Use the request library to fetch the specified URL (```opts``` gets passed on to the ```request()``` call), and call the function
+ with the result (either an error or the data).
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.parseICS" id="apidoc.element.ical.parseICS">
+        function <span class="apidocSignatureSpan">ical.</span>parseICS
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseICS = function (str){
+  var self = this
+  var lines = str.split(/\r?\n/)
+  var ctx = {}
+  var stack = []
+
+  for (var i = 0, ii = lines.length, l = lines[0]; i&lt;ii; i++, l=lines[i]){
+    //Unfold : RFC#3.1
+    while (lines[i+1] &amp;&amp; /[ \t]/.test(lines[i+1][0])) {
+      l += lines[i+1].slice(1)
+      i += 1
+    }
+
+    var kv = l.split(":")
+
+    if (kv.length &lt; 2){
+      // Invalid line - must have k&amp;v
+      continue;
+    }
+
+    // Although the spec says that vals with colons should be quote wrapped
+    // in practise nobody does, so we assume further colons are part of the
+    // val
+    var value = kv.slice(1).join(":")
+      , kp = kv[0].split(";")
+      , name = kp[0]
+      , params = kp.slice(1)
+
+    ctx = self.handleObject(name, value, params, ctx, stack, l) || {}
+  }
+
+   // type and params are added to the list of items, get rid of them.
+   delete ctx.type
+   delete ctx.params
+
+   return ctx
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    npm install ical
+
+
+
+## API ##
+
+    ical.<span class="apidocCodeKeywordSpan">parseICS</span>(str)
+
+Parses a string with an ICS File
+
+    var data = ical.parseFile(filename)
+
+Reads in the specified iCal file, parses it and returns the parsed data
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.ical.node_ical" id="apidoc.module.ical.node_ical">module ical.node_ical</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.ical.node_ical.fromURL" id="apidoc.element.ical.node_ical.fromURL">
+        function <span class="apidocSignatureSpan">ical.node_ical.</span>fromURL
+        <span class="apidocSignatureSpan">(url, opts, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">fromURL = function (url, opts, cb){
+  if (!cb)
+    return;
+  request(url, opts, function(err, r, data){
+    if (err)
+      return cb(err, null);
+    cb(undefined, ical.parseICS(data));
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Parses a string with an ICS File
+
+    var data = ical.parseFile(filename)
+
+Reads in the specified iCal file, parses it and returns the parsed data
+
+    ical.<span class="apidocCodeKeywordSpan">fromURL</span>(url, options, function(err, data) {} )
+
+Use the request library to fetch the specified URL (```opts``` gets passed on to the ```request()``` call), and call the function
+ with the result (either an error or the data).
+
+
+
+## Example 1 - Print list of upcoming node conferences (see example.js)
+```javascript
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.node_ical.parseFile" id="apidoc.element.ical.node_ical.parseFile">
+        function <span class="apidocSignatureSpan">ical.node_ical.</span>parseFile
+        <span class="apidocSignatureSpan">(filename)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseFile = function (filename){
+  return ical.parseICS(fs.readFileSync(filename, 'utf8'))
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## API ##
+
+    ical.parseICS(str)
+
+Parses a string with an ICS File
+
+    var data = ical.<span class="apidocCodeKeywordSpan">parseFile</span>(filename)
+
+Reads in the specified iCal file, parses it and returns the parsed data
+
+    ical.fromURL(url, options, function(err, data) {} )
+
+Use the request library to fetch the specified URL (```opts``` gets passed on to the ```request()``` call), and call the function
+ with the result (either an error or the data).
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.ical.objectHandlers" id="apidoc.module.ical.objectHandlers">module ical.objectHandlers</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.BEGIN" id="apidoc.element.ical.objectHandlers.BEGIN">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>BEGIN
+        <span class="apidocSignatureSpan">(component, params, curr, stack)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">BEGIN = function (component, params, curr, stack){
+  stack.push(curr)
+
+  return {type:component, params:params}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.CATEGORIES" id="apidoc.element.ical.objectHandlers.CATEGORIES">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>CATEGORIES
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">CATEGORIES = function (val, params, curr) {
+  storeParam(val, params, curr)
+  curr[name] = val ? val.split(separatorPattern) : []
+  return curr
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.COMPLETED" id="apidoc.element.ical.objectHandlers.COMPLETED">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>COMPLETED
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">COMPLETED = function (val, params, curr){
+
+  // Store as string - worst case scenario
+  storeParam(name)(val, undefined, curr)
+
+  if (params &amp;&amp; params[0] === "VALUE=DATE") {
+    // Just Date
+
+    var comps = /^(\d{4})(\d{2})(\d{2})$/.exec(val);
+    if (comps !== null) {
+      // No TZ info - assume same timezone as this computer
+      curr[name] = new Date(
+        comps[1],
+        parseInt(comps[2], 10)-1,
+        comps[3]
+      );
+
+      return addTZ(curr, name, params);
+    }
+  }
+
+
+  //typical RFC date-time format
+  var comps = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(Z)?$/.exec(val);
+  if (comps !== null) {
+    if (comps[7] == 'Z'){ // GMT
+      curr[name] = new Date(Date.UTC(
+        parseInt(comps[1], 10),
+        parseInt(comps[2], 10)-1,
+        parseInt(comps[3], 10),
+        parseInt(comps[4], 10),
+        parseInt(comps[5], 10),
+        parseInt(comps[6], 10 )
+      ));
+      // TODO add tz
+    } else {
+      curr[name] = new Date(
+        parseInt(comps[1], 10),
+        parseInt(comps[2], 10)-1,
+        parseInt(comps[3], 10),
+        parseInt(comps[4], 10),
+        parseInt(comps[5], 10),
+        parseInt(comps[6], 10)
+      );
+    }
+  }
+
+  return addTZ(curr, name, params)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.DESCRIPTION" id="apidoc.element.ical.objectHandlers.DESCRIPTION">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>DESCRIPTION
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">DESCRIPTION = function (val, params, curr){
+  var data;
+  if (params &amp;&amp; params.length &amp;&amp; !(params.length==1 &amp;&amp; params[0]==='CHARSET=utf-8')){
+    data = {params:parseParams(params), val:text(val)}
+  }
+  else
+    data = text(val)
+
+  var current = curr[name];
+  if (Array.isArray(current)){
+    current.push(data);
+    return curr;
+  }
+
+  if (current != null){
+    curr[name] = [current, data];
+    return curr;
+  }
+
+  curr[name] = data;
+  return curr
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.DTEND" id="apidoc.element.ical.objectHandlers.DTEND">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>DTEND
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">DTEND = function (val, params, curr){
+
+  // Store as string - worst case scenario
+  storeParam(name)(val, undefined, curr)
+
+  if (params &amp;&amp; params[0] === "VALUE=DATE") {
+    // Just Date
+
+    var comps = /^(\d{4})(\d{2})(\d{2})$/.exec(val);
+    if (comps !== null) {
+      // No TZ info - assume same timezone as this computer
+      curr[name] = new Date(
+        comps[1],
+        parseInt(comps[2], 10)-1,
+        comps[3]
+      );
+
+      return addTZ(curr, name, params);
+    }
+  }
+
+
+  //typical RFC date-time format
+  var comps = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(Z)?$/.exec(val);
+  if (comps !== null) {
+    if (comps[7] == 'Z'){ // GMT
+      curr[name] = new Date(Date.UTC(
+        parseInt(comps[1], 10),
+        parseInt(comps[2], 10)-1,
+        parseInt(comps[3], 10),
+        parseInt(comps[4], 10),
+        parseInt(comps[5], 10),
+        parseInt(comps[6], 10 )
+      ));
+      // TODO add tz
+    } else {
+      curr[name] = new Date(
+        parseInt(comps[1], 10),
+        parseInt(comps[2], 10)-1,
+        parseInt(comps[3], 10),
+        parseInt(comps[4], 10),
+        parseInt(comps[5], 10),
+        parseInt(comps[6], 10)
+      );
+    }
+  }
+
+  return addTZ(curr, name, params)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.DTSTART" id="apidoc.element.ical.objectHandlers.DTSTART">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>DTSTART
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">DTSTART = function (val, params, curr){
+
+  // Store as string - worst case scenario
+  storeParam(name)(val, undefined, curr)
+
+  if (params &amp;&amp; params[0] === "VALUE=DATE") {
+    // Just Date
+
+    var comps = /^(\d{4})(\d{2})(\d{2})$/.exec(val);
+    if (comps !== null) {
+      // No TZ info - assume same timezone as this computer
+      curr[name] = new Date(
+        comps[1],
+        parseInt(comps[2], 10)-1,
+        comps[3]
+      );
+
+      return addTZ(curr, name, params);
+    }
+  }
+
+
+  //typical RFC date-time format
+  var comps = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(Z)?$/.exec(val);
+  if (comps !== null) {
+    if (comps[7] == 'Z'){ // GMT
+      curr[name] = new Date(Date.UTC(
+        parseInt(comps[1], 10),
+        parseInt(comps[2], 10)-1,
+        parseInt(comps[3], 10),
+        parseInt(comps[4], 10),
+        parseInt(comps[5], 10),
+        parseInt(comps[6], 10 )
+      ));
+      // TODO add tz
+    } else {
+      curr[name] = new Date(
+        parseInt(comps[1], 10),
+        parseInt(comps[2], 10)-1,
+        parseInt(comps[3], 10),
+        parseInt(comps[4], 10),
+        parseInt(comps[5], 10),
+        parseInt(comps[6], 10)
+      );
+    }
+  }
+
+  return addTZ(curr, name, params)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.END" id="apidoc.element.ical.objectHandlers.END">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>END
+        <span class="apidocSignatureSpan">(val, params, curr, stack)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">END = function (val, params, curr, stack){
+  if (curr.rrule) {
+    var rule = curr.rrule.replace('RRULE:', '');
+    if (rule.indexOf('DTSTART') === -1) {
+      rule += ';DTSTART=' + curr.start.toISOString().replace(/[-:]/g, '');
+      rule = rule.replace(/\.[0-9]{3}/, '');
+    }
+    curr.rrule = rrule.fromString(rule);
+  }
+  return originalEnd.call(this, val, params, curr, stack);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.FREEBUSY" id="apidoc.element.ical.objectHandlers.FREEBUSY">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>FREEBUSY
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">FREEBUSY = function (val, params, curr){
+  var fb = addFBType({}, params);
+  curr[name] = curr[name] || []
+  curr[name].push(fb);
+
+  storeParam(val, params, fb);
+
+  var parts = val.split('/');
+
+  ['start', 'end'].forEach(function (name, index) {
+    dateParam(name)(parts[index], params, fb);
+  });
+
+  return curr;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.GEO" id="apidoc.element.ical.objectHandlers.GEO">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>GEO
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">GEO = function (val, params, curr){
+  storeParam(val, params, curr)
+  var parts = val.split(';');
+  curr[name] = {lat:Number(parts[0]), lon:Number(parts[1])};
+  return curr
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.LOCATION" id="apidoc.element.ical.objectHandlers.LOCATION">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>LOCATION
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">LOCATION = function (val, params, curr){
+  var data;
+  if (params &amp;&amp; params.length &amp;&amp; !(params.length==1 &amp;&amp; params[0]==='CHARSET=utf-8')){
+    data = {params:parseParams(params), val:text(val)}
+  }
+  else
+    data = text(val)
+
+  var current = curr[name];
+  if (Array.isArray(current)){
+    current.push(data);
+    return curr;
+  }
+
+  if (current != null){
+    curr[name] = [current, data];
+    return curr;
+  }
+
+  curr[name] = data;
+  return curr
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.PERCENT-COMPLETE" id="apidoc.element.ical.objectHandlers.PERCENT-COMPLETE">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>PERCENT-COMPLETE
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">PERCENT-COMPLETE = function (val, params, curr){
+  var data;
+  if (params &amp;&amp; params.length &amp;&amp; !(params.length==1 &amp;&amp; params[0]==='CHARSET=utf-8')){
+    data = {params:parseParams(params), val:text(val)}
+  }
+  else
+    data = text(val)
+
+  var current = curr[name];
+  if (Array.isArray(current)){
+    current.push(data);
+    return curr;
+  }
+
+  if (current != null){
+    curr[name] = [current, data];
+    return curr;
+  }
+
+  curr[name] = data;
+  return curr
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.RRULE" id="apidoc.element.ical.objectHandlers.RRULE">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>RRULE
+        <span class="apidocSignatureSpan">(val, params, curr, stack, line)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">RRULE = function (val, params, curr, stack, line){
+  curr.rrule = line;
+  return curr
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.SUMMARY" id="apidoc.element.ical.objectHandlers.SUMMARY">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>SUMMARY
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">SUMMARY = function (val, params, curr){
+  var data;
+  if (params &amp;&amp; params.length &amp;&amp; !(params.length==1 &amp;&amp; params[0]==='CHARSET=utf-8')){
+    data = {params:parseParams(params), val:text(val)}
+  }
+  else
+    data = text(val)
+
+  var current = curr[name];
+  if (Array.isArray(current)){
+    current.push(data);
+    return curr;
+  }
+
+  if (current != null){
+    curr[name] = [current, data];
+    return curr;
+  }
+
+  curr[name] = data;
+  return curr
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.TRANSP" id="apidoc.element.ical.objectHandlers.TRANSP">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>TRANSP
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">TRANSP = function (val, params, curr){
+  var data;
+  if (params &amp;&amp; params.length &amp;&amp; !(params.length==1 &amp;&amp; params[0]==='CHARSET=utf-8')){
+    data = {params:parseParams(params), val:text(val)}
+  }
+  else
+    data = text(val)
+
+  var current = curr[name];
+  if (Array.isArray(current)){
+    current.push(data);
+    return curr;
+  }
+
+  if (current != null){
+    curr[name] = [current, data];
+    return curr;
+  }
+
+  curr[name] = data;
+  return curr
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.UID" id="apidoc.element.ical.objectHandlers.UID">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>UID
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">UID = function (val, params, curr){
+  var data;
+  if (params &amp;&amp; params.length &amp;&amp; !(params.length==1 &amp;&amp; params[0]==='CHARSET=utf-8')){
+    data = {params:parseParams(params), val:text(val)}
+  }
+  else
+    data = text(val)
+
+  var current = curr[name];
+  if (Array.isArray(current)){
+    current.push(data);
+    return curr;
+  }
+
+  if (current != null){
+    curr[name] = [current, data];
+    return curr;
+  }
+
+  curr[name] = data;
+  return curr
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.objectHandlers.URL" id="apidoc.element.ical.objectHandlers.URL">
+        function <span class="apidocSignatureSpan">ical.objectHandlers.</span>URL
+        <span class="apidocSignatureSpan">(val, params, curr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">URL = function (val, params, curr){
+  var data;
+  if (params &amp;&amp; params.length &amp;&amp; !(params.length==1 &amp;&amp; params[0]==='CHARSET=utf-8')){
+    data = {params:parseParams(params), val:text(val)}
+  }
+  else
+    data = text(val)
+
+  var current = curr[name];
+  if (Array.isArray(current)){
+    current.push(data);
+    return curr;
+  }
+
+  if (current != null){
+    curr[name] = [current, data];
+    return curr;
+  }
+
+  curr[name] = data;
+  return curr
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
