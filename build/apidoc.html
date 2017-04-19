@@ -99,6 +99,12 @@
 
         <li>
 
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan"></span>ical</span>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">ical.</span>node_ical</span>
 
         </li>
@@ -106,6 +112,52 @@
         <li>
 
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">ical.</span>objectHandlers</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.ical.ical">module ical.ical</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.ical.fromURL">
+            function <span class="apidocSignatureSpan">ical.ical.</span>fromURL
+            <span class="apidocSignatureSpan">(url, opts, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.ical.handleObject">
+            function <span class="apidocSignatureSpan">ical.ical.</span>handleObject
+            <span class="apidocSignatureSpan">(name, val, params, ctx, stack, line)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.ical.parseFile">
+            function <span class="apidocSignatureSpan">ical.ical.</span>parseFile
+            <span class="apidocSignatureSpan">(filename)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical.ical.parseICS">
+            function <span class="apidocSignatureSpan">ical.ical.</span>parseICS
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">ical.ical.</span>objectHandlers</span>
 
         </li>
 
@@ -347,7 +399,23 @@ Use the request library to fetch the specified URL (```opts``` gets passed on to
 
   return storeParam(name.toLowerCase())(val, params, ctx);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ // in practise nobody does, so we assume further colons are part of the
+ // val
+ var value = kv.slice(1).join(&#x22;:&#x22;)
+   , kp = kv[0].split(&#x22;;&#x22;)
+   , name = kp[0]
+   , params = kp.slice(1)
+
+ ctx = self.<span class="apidocCodeKeywordSpan">handleObject</span>(name, value, params, ctx, stack, l) || {}
+      }
+
+// type and params are added to the list of items, get rid of them.
+delete ctx.type
+delete ctx.params
+
+return ctx
+...</pre></li>
     </ul>
 
 
@@ -446,6 +514,191 @@ Reads in the specified iCal file, parses it and returns the parsed data
     </ul>
 
 
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.ical.ical" id="apidoc.module.ical.ical">module ical.ical</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.ical.ical.fromURL" id="apidoc.element.ical.ical.fromURL">
+        function <span class="apidocSignatureSpan">ical.ical.</span>fromURL
+        <span class="apidocSignatureSpan">(url, opts, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">fromURL = function (url, opts, cb){
+  if (!cb)
+    return;
+  request(url, opts, function(err, r, data){
+    if (err)
+      return cb(err, null);
+    cb(undefined, ical.parseICS(data));
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Parses a string with an ICS File
+
+    var data = ical.parseFile(filename)
+
+Reads in the specified iCal file, parses it and returns the parsed data
+
+    ical.<span class="apidocCodeKeywordSpan">fromURL</span>(url, options, function(err, data) {} )
+
+Use the request library to fetch the specified URL (```opts``` gets passed on to the ```request()``` call), and call the function
+ with the result (either an error or the data).
+
+
+
+## Example 1 - Print list of upcoming node conferences (see example.js)
+```javascript
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.ical.handleObject" id="apidoc.element.ical.ical.handleObject">
+        function <span class="apidocSignatureSpan">ical.ical.</span>handleObject
+        <span class="apidocSignatureSpan">(name, val, params, ctx, stack, line)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleObject = function (name, val, params, ctx, stack, line){
+  var self = this
+
+  if(self.objectHandlers[name])
+    return self.objectHandlers[name](val, params, ctx, stack, line)
+
+  //handling custom properties
+  if(name.match(/X\-[\w\-]+/) &#x26;&#x26; stack.length &#x3e; 0) {
+      //trimming the leading and perform storeParam
+      name = name.substring(2);
+      return (storeParam(name))(val, params, ctx, stack, line);
+  }
+
+  return storeParam(name.toLowerCase())(val, params, ctx);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ // in practise nobody does, so we assume further colons are part of the
+ // val
+ var value = kv.slice(1).join(&#x22;:&#x22;)
+   , kp = kv[0].split(&#x22;;&#x22;)
+   , name = kp[0]
+   , params = kp.slice(1)
+
+ ctx = self.<span class="apidocCodeKeywordSpan">handleObject</span>(name, value, params, ctx, stack, l) || {}
+      }
+
+// type and params are added to the list of items, get rid of them.
+delete ctx.type
+delete ctx.params
+
+return ctx
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.ical.parseFile" id="apidoc.element.ical.ical.parseFile">
+        function <span class="apidocSignatureSpan">ical.ical.</span>parseFile
+        <span class="apidocSignatureSpan">(filename)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseFile = function (filename){
+  return ical.parseICS(fs.readFileSync(filename, &#x27;utf8&#x27;))
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## API ##
+
+    ical.parseICS(str)
+
+Parses a string with an ICS File
+
+    var data = ical.<span class="apidocCodeKeywordSpan">parseFile</span>(filename)
+
+Reads in the specified iCal file, parses it and returns the parsed data
+
+    ical.fromURL(url, options, function(err, data) {} )
+
+Use the request library to fetch the specified URL (```opts``` gets passed on to the ```request()``` call), and call the function
+ with the result (either an error or the data).
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical.ical.parseICS" id="apidoc.element.ical.ical.parseICS">
+        function <span class="apidocSignatureSpan">ical.ical.</span>parseICS
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseICS = function (str){
+  var self = this
+  var lines = str.split(/\r?\n/)
+  var ctx = {}
+  var stack = []
+
+  for (var i = 0, ii = lines.length, l = lines[0]; i&#x3c;ii; i++, l=lines[i]){
+    //Unfold : RFC#3.1
+    while (lines[i+1] &#x26;&#x26; /[ \t]/.test(lines[i+1][0])) {
+      l += lines[i+1].slice(1)
+      i += 1
+    }
+
+    var kv = l.split(&#x22;:&#x22;)
+
+    if (kv.length &#x3c; 2){
+      // Invalid line - must have k&#x26;v
+      continue;
+    }
+
+    // Although the spec says that vals with colons should be quote wrapped
+    // in practise nobody does, so we assume further colons are part of the
+    // val
+    var value = kv.slice(1).join(&#x22;:&#x22;)
+      , kp = kv[0].split(&#x22;;&#x22;)
+      , name = kp[0]
+      , params = kp.slice(1)
+
+    ctx = self.handleObject(name, value, params, ctx, stack, l) || {}
+  }
+
+   // type and params are added to the list of items, get rid of them.
+   delete ctx.type
+   delete ctx.params
+
+   return ctx
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    npm install ical
+
+
+
+## API ##
+
+    ical.<span class="apidocCodeKeywordSpan">parseICS</span>(str)
+
+Parses a string with an ICS File
+
+    var data = ical.parseFile(filename)
+
+Reads in the specified iCal file, parses it and returns the parsed data
+...</pre></li>
+    </ul>
 
 
 
