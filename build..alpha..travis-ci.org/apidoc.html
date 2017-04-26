@@ -357,21 +357,23 @@
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-Parses a string with an ICS File
-
-    var data = ical.parseFile(filename)
-
-Reads in the specified iCal file, parses it and returns the parsed data
-
-    ical.<span class="apidocCodeKeywordSpan">fromURL</span>(url, options, function(err, data) {} )
-
-Use the request library to fetch the specified URL (```opts``` gets passed on to the ```request()``` call), and call the function
- with the result (either an error or the data).
 
 
+var ical = require(&#x27;ical&#x27;)
+  , months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27
+;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
 
-## Example 1 - Print list of upcoming node conferences (see example.js)
-```javascript
+
+ical.<span class="apidocCodeKeywordSpan">fromURL</span>(&#x27;http://lanyrd.com/topics/nodejs/nodejs.ics&#x27;, {}, function(err
+, data){
+  for (var k in data){
+    if (data.hasOwnProperty(k)){
+      var ev = data[k]
+      console.log(&#x22;Conference&#x22;, ev.summary, &#x27;is in&#x27;,  ev.location, &#x27;on the&#x27;, ev.start.getDate(), &#
+x27;of&#x27;, months[ev.start.getMonth()] );
+    }
+  }
+})
 ...</pre></li>
     </ul>
 
@@ -497,19 +499,19 @@ Use the request library to fetch the specified URL (```opts``` gets passed on to
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-    npm install ical
+exports.fromURL = function(url, opts, cb){
+  if (!cb)
+    return;
+  request(url, opts, function(err, r, data){
+    if (err)
+      return cb(err, null);
+    cb(undefined, ical.<span class="apidocCodeKeywordSpan">parseICS</span>(data));
+  })
+}
 
-
-
-## API ##
-
-    ical.<span class="apidocCodeKeywordSpan">parseICS</span>(str)
-
-Parses a string with an ICS File
-
-    var data = ical.parseFile(filename)
-
-Reads in the specified iCal file, parses it and returns the parsed data
+exports.parseFile = function(filename){
+  return ical.parseICS(fs.readFileSync(filename, &#x27;utf8&#x27;))
+}
 ...</pre></li>
     </ul>
 
@@ -544,21 +546,23 @@ Reads in the specified iCal file, parses it and returns the parsed data
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-Parses a string with an ICS File
-
-    var data = ical.parseFile(filename)
-
-Reads in the specified iCal file, parses it and returns the parsed data
-
-    ical.<span class="apidocCodeKeywordSpan">fromURL</span>(url, options, function(err, data) {} )
-
-Use the request library to fetch the specified URL (```opts``` gets passed on to the ```request()``` call), and call the function
- with the result (either an error or the data).
 
 
+var ical = require(&#x27;ical&#x27;)
+  , months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27
+;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
 
-## Example 1 - Print list of upcoming node conferences (see example.js)
-```javascript
+
+ical.<span class="apidocCodeKeywordSpan">fromURL</span>(&#x27;http://lanyrd.com/topics/nodejs/nodejs.ics&#x27;, {}, function(err
+, data){
+  for (var k in data){
+    if (data.hasOwnProperty(k)){
+      var ev = data[k]
+      console.log(&#x22;Conference&#x22;, ev.summary, &#x27;is in&#x27;,  ev.location, &#x27;on the&#x27;, ev.start.getDate(), &#
+x27;of&#x27;, months[ev.start.getMonth()] );
+    }
+  }
+})
 ...</pre></li>
     </ul>
 
@@ -684,19 +688,19 @@ Use the request library to fetch the specified URL (```opts``` gets passed on to
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-    npm install ical
+exports.fromURL = function(url, opts, cb){
+  if (!cb)
+    return;
+  request(url, opts, function(err, r, data){
+    if (err)
+      return cb(err, null);
+    cb(undefined, ical.<span class="apidocCodeKeywordSpan">parseICS</span>(data));
+  })
+}
 
-
-
-## API ##
-
-    ical.<span class="apidocCodeKeywordSpan">parseICS</span>(str)
-
-Parses a string with an ICS File
-
-    var data = ical.parseFile(filename)
-
-Reads in the specified iCal file, parses it and returns the parsed data
+exports.parseFile = function(filename){
+  return ical.parseICS(fs.readFileSync(filename, &#x27;utf8&#x27;))
+}
 ...</pre></li>
     </ul>
 
@@ -727,21 +731,23 @@ Reads in the specified iCal file, parses it and returns the parsed data
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-Parses a string with an ICS File
-
-    var data = ical.parseFile(filename)
-
-Reads in the specified iCal file, parses it and returns the parsed data
-
-    ical.<span class="apidocCodeKeywordSpan">fromURL</span>(url, options, function(err, data) {} )
-
-Use the request library to fetch the specified URL (```opts``` gets passed on to the ```request()``` call), and call the function
- with the result (either an error or the data).
 
 
+var ical = require(&#x27;ical&#x27;)
+  , months = [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27
+;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;]
 
-## Example 1 - Print list of upcoming node conferences (see example.js)
-```javascript
+
+ical.<span class="apidocCodeKeywordSpan">fromURL</span>(&#x27;http://lanyrd.com/topics/nodejs/nodejs.ics&#x27;, {}, function(err
+, data){
+  for (var k in data){
+    if (data.hasOwnProperty(k)){
+      var ev = data[k]
+      console.log(&#x22;Conference&#x22;, ev.summary, &#x27;is in&#x27;,  ev.location, &#x27;on the&#x27;, ev.start.getDate(), &#
+x27;of&#x27;, months[ev.start.getMonth()] );
+    }
+  }
+})
 ...</pre></li>
     </ul>
 
