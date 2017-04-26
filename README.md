@@ -1,6 +1,6 @@
 # npmdoc-ical
 
-#### api documentation for  [ical (v0.5.0)](https://github.com/peterbraden/ical.js)  [![npm package](https://img.shields.io/npm/v/npmdoc-ical.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-ical) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-ical.svg)](https://travis-ci.org/npmdoc/node-npmdoc-ical)
+#### basic api documentation for  [ical (v0.5.0)](https://github.com/peterbraden/ical.js)  [![npm package](https://img.shields.io/npm/v/npmdoc-ical.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-ical) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-ical.svg)](https://travis-ci.org/npmdoc/node-npmdoc-ical)
 
 #### A tolerant, minimal icalendar parser
 
@@ -64,7 +64,8 @@
     "scripts": {
         "test": "./node_modules/vows/bin/vows ./test/test.js"
     },
-    "version": "0.5.0"
+    "version": "0.5.0",
+    "bin": {}
 }
 ```
 
